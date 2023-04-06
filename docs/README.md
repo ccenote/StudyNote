@@ -11,5 +11,5 @@ actions:
     link: /guide/
     type: secondary
 footerHtml: true
-footer: Copyright © 2023 CCENOTE 版权所有 . <a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2022001116号-1</a>
+footer: <p>Copyright © 2023 CCENOTE 版权所有 . <a href="https://beian.miit.gov.cn/" target="_blank">冀ICP备2022001116号-1</a></p>
 ---
