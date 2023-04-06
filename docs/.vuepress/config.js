@@ -1,34 +1,53 @@
 import {defaultTheme, defineUserConfig} from "vuepress";
-
+import {searchPlugin} from "@vuepress/plugin-search";
 export default defineUserConfig({
     base:'/',
     lang:'zh-CN',
-    title:'学习笔记',
-    description:"我的学习笔记大全",
+    title:'Program Study Note',
+    description:"编程学习笔记",
     docsDir: 'docs',
     head:[
         ['link',{rel:'icon',href:'/favicon.ico'}],
     ],
+
     theme: defaultTheme({
+        home:'/',
+        repo:'https://github.com/ccenote/StudyNote',
+        lastUpdatedText:'更新时间',
+        editLinkText:'编辑此页',
+        contributorsText:'作者',
+        toggleColorMode:'切换主题',
+        heroText:'学习笔记',
+        logo:'/images/logo.png',
         sidebar:{
-            '/java/':[
+            '/note/':[
                 {
                     text:'Java',
                     children:[
                         {
-                            text:"SpringCloud",
+                            text:"springcloud",
                             children:[
-                                '/java/SpringCloud/README.md',
-                                '/java/SpringCloud/Eureka.md',
-                                '/java/SpringCloud/Ribbon.md',
-                                '/java/SpringCloud/Nacos.md',
-                                '/java/SpringCloud/Feign.md',
-                                '/java/SpringCloud/GateWay.md'
+                                '/note/java/springcloud/',
+                                '/note/java/springcloud/Eureka.md',
+                                '/note/java/springcloud/Ribbon.md',
+                                '/note/java/springcloud/Nacos.md',
+                                '/note/java/springcloud/Feign.md',
+                                '/note/java/springcloud/GateWay.md'
                             ]
                         }
                     ]
                 }
             ]
         }
-    })
+    }),
+    plugins:[
+        searchPlugin({
+            // 配置项
+            locales:{
+                '/':{
+                    placeholder:"搜索"
+                }
+            }
+        }),
+    ],
 })

@@ -1,0 +1,66 @@
+html,body,#app{
+  height:100%;
+}
+html.dark{
+  --c-bg:#000;
+  --c-brand:#5D67E8;
+  --c-text-lightest:#deded5;
+}
+:root{
+  --c-brand:#5D67E8;
+  --c-text-lightest:#3c3c43;
+}
+.my-home{
+  height:100%;
+  background:url("/images/bg.svg") center center / cover;
+}
+.my-home .home{
+  display: flex;
+  align-items: center;
+  height: calc(100vh - 160px);
+  justify-content: center;
+}
+.home .hero h1{
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(to right,#5D67E8,#ef4444)!important;
+  font-size:3rem;
+  font-weight: bold;
+  width:720px;
+  text-align:left !important;
+}
+.home .hero .description{
+  text-align:left !important;
+  max-width:720px;
+}
+.home .hero .actions{
+  width:720px;
+  justify-content: left;
+}
+.home .hero .action-button{
+  padding:6px 12px !important;
+  font-size:14px;
+  font-weight: bold;
+}
+.home .hero .action-button.primary{
+  background-color:#5D67E8;
+  color:#fff;
+  border:none;
+}
+.home .hero .action-button.primary:hover{
+  background-color:#6D68F8;
+}
+.home .hero .action-button.secondary{
+  border-color:#5D67E8;
+}
+.home .hero .action-button.secondary:hover{
+  background: #5D67E8;
+}
+.home .footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--c-bg-navbar);
+}
+

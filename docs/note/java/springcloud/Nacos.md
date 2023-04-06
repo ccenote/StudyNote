@@ -66,38 +66,38 @@ Nacos提供了权重配置来控制访问频率，权重越大访问频率越高
 
 1. 在Nacos控制台可以设置实例的权重值 `0~1`之间
 
-2. 环境隔离
+## 环境隔离
 
-   Nacos中服务存储和数据存储的最外层都有一个名为namespace的东西，用来做最外层隔离
+Nacos中服务存储和数据存储的最外层都有一个名为namespace的东西，用来做最外层隔离
 
-   1. 在Nacos控制台可以创建 namespace 用来隔离不同环境
+1. 在Nacos控制台可以创建 namespace 用来隔离不同环境
 
-   2. 生成后会出现一个命名空间 Id
+2. 生成后会出现一个命名空间 Id
 
-   3. 在子服务中添加配置
-
-      ``` yaml
-      cloud:
-      	nacos:
-      		server-addr: localhost:8848
-      		discovery:
-      			cluster-name: SH
-      			namespace: 命名空间Id
-      ```
-
-3. 临时实例
-
-   服务注册到Nacos时，可以选择为临时或非临时实例
+3. 在子服务中添加配置
 
    ``` yaml
-   spring:
-   	cloud:
-   		nacos:
-   			discovery:
-   				ephemeral: false
+   cloud:
+   	nacos:
+   		server-addr: localhost:8848
+   		discovery:
+   			cluster-name: SH
+   			namespace: 命名空间Id
    ```
 
-   临时实例宕机时，会从nacos的服务列表中剔除，而非临时实例则不会
+## 临时实例
+
+服务注册到Nacos时，可以选择为临时或非临时实例
+
+``` yaml
+spring:
+	cloud:
+		nacos:
+			discovery:
+				ephemeral: false
+```
+
+临时实例宕机时，会从nacos的服务列表中剔除，而非临时实例则不会
 
 ## 统一配置管理
 
