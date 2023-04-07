@@ -209,6 +209,24 @@
 - `docker network rm mynet1` 删除网络
 - `docker run -it -rm --name vm1 --network=mynet1 busybox` 使用自定义网络
 
+## Dockerfile自定义镜像
+
+常见的镜像在DockerHub就能找到，但是我们自己写的项目就必须构建自己的镜像了
+
+### 镜像结构
+
+镜像是将应用程序及其需要的系统函数库、环境、配置、依赖打包而成。
+
+### Dockerfile语法
+
+构建自定义的镜像时，并不需要一个个文件去拷贝打包。
+
+我们只需要告诉Docker，我们的镜像的组成，需要哪些BaseImage、需要拷贝什么文件、需要安装什么依赖、启动脚本是什么，将会Docker会帮助我们构建镜像。
+
+Dockerfile就是一个文本文件，其中包含一个个的指令，用指令来说明要执行什么操作来构建镜像。每一个指令都会形成一层`Layer` 
+
+![图片](/images/image-20210731180321133.png)
+
 ## 构建Java项目
 
 1. 新建一个空文件夹docker-demo

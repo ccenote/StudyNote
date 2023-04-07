@@ -32,7 +32,8 @@ export default defineUserConfig({
                                 '/note/java/springcloud/Ribbon.md',
                                 '/note/java/springcloud/Nacos.md',
                                 '/note/java/springcloud/Feign.md',
-                                '/note/java/springcloud/GateWay.md'
+                                '/note/java/springcloud/GateWay.md',
+                                '/note/java/springcloud/RabbitMQ.md'
                             ]
                         }
                     ]
