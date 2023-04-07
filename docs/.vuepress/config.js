@@ -20,7 +20,7 @@ export default defineUserConfig({
         heroText:'学习笔记',
         logo:'/images/logo.png',
         sidebar:{
-            '/note/':[
+            '/note/java/':[
                 {
                     text:'Java',
                     children:[
@@ -37,8 +37,27 @@ export default defineUserConfig({
                         }
                     ]
                 }
+            ],
+            '/note/docker':[
+                {
+                    text:"docker",
+                    link:'/note/docker/'
+                }
+            ],
+            '/list/':[
+                '/list/README.md'
             ]
-        }
+        },
+        navbar:[
+            {
+                text:"项目简介",
+                link:'/guide/README.md'
+            },
+            {
+                text:"文档目录",
+                link:'/list/README.md'
+            }
+        ]
     }),
     plugins:[
         searchPlugin({

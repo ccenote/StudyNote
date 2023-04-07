@@ -5,7 +5,7 @@ heroText: Program Study Note
 tagline: 编程语言框架的学习笔记、文档.
 actions:
   - text: 查看笔记
-    link: /zh/guide/getting-started.html
+    link: /list/
     type: primary
   - text: 项目简介
     link: /guide/
