@@ -425,6 +425,154 @@ Fanout,英文翻译是扇出，我觉得在MQ中叫广播更合适。
    - FanoutExchange
    - Binding
 
+## Direct
+
+在`Fanout`模式中，一条消息，会被所有订阅的队列都消费。但是，在某些场景下，我们希望不同的消息被不同的队列消费。这时就要用到`Direct`类型的`Exchange`。
+
+![图片](/images/image-20210717170041447.png)
+
+在`Direct`模型下：
+
+- 队列与交换机的绑定，不能是任意绑定了，而是要指定一个`RoutingKey`（路由`key`）
+- 消息的发送方在向`Exchange`发送消息时，也必须指定消息的`RoutingKey`
+- `Exchange`不再把消息交给每一个绑定的队列，而是根据消息的`Routing Key`进行判断，只有队列的`Routingkey`与消息的`Routing key`完全一致，才会接收消息
+
+1. 基于注解声明队列和交换机
+
+   基于@Bean的方式声明队列和交换机比较麻烦，`Spring`还提供了基于注解方式来声明。
+
+   在`consumer`的`SpringRabbitListener`中添加两个消费者，同时基于注解来生命队列和交换机：
+
+   ``` java
+   @RabbitListener(bindings=@QueueBinding(value=@Queue(name="direct.queue1"),exchange=@Exchange(name="cece.direct",type=ExchangeTypes.DIRECT),key={"red","blue"}))
+   public void listenDirectQueue1(String msg){
+       sout("消费者接收到direct.queue1的消息："+msg);
+   }
+   @RabbitListener(bindings=@QueueBinding(value=@Queue(name="direct.queue2"),exchange=@Exchange(name="cece.direct",type=ExchangeTypes.DIRECT),key={"red","yellow"}))
+   public void listenDirectQueue2(String msg){
+       sout("消费者接收到direct.queue2的消息："+msg);
+   }
+   ```
+
+2. 消息发送
+
+   在`publisher`服务的`SpringAmqpTest`类中添加测试方法：
+
+   ``` java
+   @Test
+   public void testSendDirectExchange(){
+       String exchangeName="itcast.direct";
+       String message="hello";
+       rabbitTemplate.convertAndSend(exchangeName,"red",message);
+   }
+   ```
+
+3. 总结
+
+   `Direct`交换机与`Fanout`交换机的差异
+
+   - `Fanout`交换机将消息路由给每一个与之绑定的队列
+   - `Direct`交换机根据`RoutingKey`判断路由给哪个队列
+   - 如果多个队列具有相同的`RoutingKey`，则与`Fanout`功能类似
+
+   基于`@RabbitListener`注解声明队列和交换机的常用注解
+
+   - `@Queue`
+   - `@Exchange`
+
+## Topic
+
+`Topic`类型的`Exchange`与`Direct`相比，都是可以根据`RoutingKey`把消息路由到不同的队列。只不过`Topic`类型`Exchange`可以让队列在绑定`Routingkey`的时候使用通配符
+
+`Routingkey`一般都是有一个或多个单词组成，多个单词之间以`.`风格，例如`cece.insert`
+
+1. 通配符规则：
+
+   - `#` 匹配一个或多个词
+
+   - `*` 匹配不多不少正好1个词
+
+2. 例子：
+
+   - `cce.#` 能匹配到 `cce.spu.insert`或者`cce.spu`
+
+   - `cce.*` 只能匹配到`cce.spu`
+
+3. 图示：
+
+   ![图片](/images/image-20210717170705380.png)
+
+4. 解释：
+
+   - `Queue1` 绑定的是`china.#` ，因此凡是以`china.`开头的`routing key`都会被匹配到。包括`china.news`和`china.weather`
+
+   - `Queue2` 绑定的是`#.news` ，因此凡是以`.news`结尾的`routing key`都会被匹配。包括`china.news`和`japan.news`
+
+5. 案例
+
+   1. 消息发送
+
+      在`publisher`服务的`SpringAmqpTest`类中添加测试方法：
+
+      ``` java
+      @Test
+      public void testSendTopicExchange(){
+          String exchangeName="cce.topic";
+          String message="hello";
+          rabbitTemplate.convertAndSend(exchangeName,"china.news",message);
+      }
+      ```
+
+      
+
+   2. 消息接收
+
+      在`consumer`服务的`SpringRabbitListener`中添加方法
+
+      ``` java
+      @RabbitListener(bindings=@QueueBinding(value=@Queue(name="topic.queue1"),exchange=@Exchange(name="cce.topic",type=ExchangeTypes.TOPIC),key="china.#"))
+      public void listenTopicQueue1(String msg){
+          sout("消费者接收到topic.queue1的消息："+msg);
+      }
+      @RabbitListener(bindings=@QueueBinding(value=@Queue(name="topic.queue2"),exchange=@Exchange(name="cce.topic",type=ExchangeTypes.TOPIC),key="#.news"))
+      public void listenTopicQueue1(String msg){
+          sout("消费者接收到topic.queue2的消息："+msg);
+      }
+      ```
+
+## 消息转换器
+
+默认情况下，`Spring`会把发送的消息序列化为字节发送给MQ，接收消息的时候，还会把字节反序列化为java对象，只不过`Spring`采用的序列化方式是JDK序列化，而JDK序列化会存在以下问题：
+
+- 数据体积过大
+- 有安全漏洞
+- 可读性差
+
+配置`JSON`转换器
+
+我们希望消息体的体积更小，可读性更高，因此可以使用`JSON`方式来做序列化和反序列化。
+
+在`publisher`和`consumer`两个服务中都引入依赖:
+
+``` xml
+<dependency>
+	<groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-xml</artifactId>
+    <version>2.9.10</version>
+</dependency>
+```
+
+配置消息转换器
+
+在启动类中添加一个`@Bean`即可
+
+``` java
+@Bean
+public MessageConverter jsonMessageConverter(){
+    return new Jackson2JsonMessageConverter();
+}
+```
+
 
 
 
