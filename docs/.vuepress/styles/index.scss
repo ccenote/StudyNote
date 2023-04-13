@@ -95,3 +95,14 @@ html.dark{
     transform: scale(1.2);
   }
 }
+@media screen and (max-width:800px){
+  .home .hero h1{
+    width:100%;
+  }
+  .home .hero .description{
+    width:100%;
+  }
+  .home .hero .actions{
+    width:100%;
+  }
+}

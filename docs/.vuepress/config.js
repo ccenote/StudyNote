@@ -40,10 +40,16 @@ export default defineUserConfig({
                     ]
                 }
             ],
-            '/note/docker':[
+            '/note/docker/':[
                 {
                     text:"docker",
                     link:'/note/docker/'
+                }
+            ],
+            '/note/iq/':[
+                {
+                    text:"面试题",
+                    link:'/note/iq/'
                 }
             ],
             '/list/':[
