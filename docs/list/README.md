@@ -5,4 +5,4 @@ pageClass: list
 # 目录
 - [JAVA](../note/java/springcloud/README.md)
 - [Docker](../note/docker/README.md)
-- [面试题](../note/iq/README.md)
+- [面试题](../note/iq/基础.md)

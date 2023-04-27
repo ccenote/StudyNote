@@ -49,7 +49,10 @@ export default defineUserConfig({
             '/note/iq/':[
                 {
                     text:"面试题",
-                    link:'/note/iq/'
+                    children:[
+                        '/note/iq/基础.md',
+                        '/note/iq/集合.md'
+                    ]
                 }
             ],
             '/list/':[
