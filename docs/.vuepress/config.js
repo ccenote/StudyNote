@@ -51,7 +51,9 @@ export default defineUserConfig({
                     text:"面试题",
                     children:[
                         '/note/iq/base.md',
-                        '/note/iq/collection.md'
+                        '/note/iq/collection.md',
+                        '/note/iq/io.md',
+                        '/note/iq/thread.md'
                     ]
                 }
             ],
