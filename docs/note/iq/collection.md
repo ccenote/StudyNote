@@ -34,7 +34,7 @@
 
 ### 6. HashMap和HashSet的区别？
 
-首先hashset的底层源码就是基于HashMap实现的，他们的底层都是通过哈希表来存储元素的。
+首先hashset的底层源码就是基于HashMap实现的，他们的底层都是通过哈希表来存储元素的。区别就是他们继承的接口不一样，方法不一样。
 
 ### 7. HashMap和HashTable的区别？
 

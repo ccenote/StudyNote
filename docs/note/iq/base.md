@@ -40,7 +40,7 @@
 
 StringBuffer和StringBuilder是字符串变量
 
-其次StringBuffer是线程安全的，所以一般多线程操作大量数据的时候使用StringBuilder
+其次StringBuffer是线程安全的，所以一般多线程操作大量数据的时候使用StringBuffer
 
 单线程操作大量数据的时候使用StringBuilder
 
