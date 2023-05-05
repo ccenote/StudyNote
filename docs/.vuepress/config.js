@@ -53,13 +53,15 @@ export default defineUserConfig({
                         '/note/iq/base.md',
                         '/note/iq/collection.md',
                         '/note/iq/io.md',
-                        '/note/iq/thread.md'
+                        '/note/iq/thread.md',
+                        '/note/iq/web.md'
                     ]
                 }
             ],
             '/list/':[
                 '/list/README.md'
             ]
+
         },
         navbar:[
             {
