@@ -54,7 +54,8 @@ export default defineUserConfig({
                         '/note/iq/collection.md',
                         '/note/iq/io.md',
                         '/note/iq/thread.md',
-                        '/note/iq/web.md'
+                        '/note/iq/web.md',
+                        '/note/iq/mysql.md'
                     ]
                 }
             ],

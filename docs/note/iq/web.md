@@ -33,5 +33,29 @@
 
 ### 4. Tomcat的生命周期？
 
+1. 加载：Tomcat启动时会读取配置文件和部署描述文件，创建Servlet容器和其他必要的组件
+2. 初始化：Tomcat在加载完成之后，开始对各个组件进行初始化配置。
+3. 启动：Tomcat将已经初始化的组件启动，开始接收请求并处理。
+4. 运行：Tomcat处理http请求并响应客户端请求，在这个阶段，Tomcat会持续接受和处理请求，知道Tomcat停止或关闭。
+5. 停止：Tomcat接收到停止命令之后，开始关闭各个组件，释放资源。
+6. 销毁：Tomcat停止后，释放所有资源，包括内存，数据库连接等，Tomcat会销毁所有已经初始化的组件，释放掉相关资源。
 
+### 5. Servlet中Request对象有哪些方法？
 
+1. getAttrbute(String name)：返回由name指定的属性值
+2. getCookies()：返回客户端的所有Cookie对象，结果是一个Cookie数组。
+3. getCharacterEncoding()：返回请求中的字符串编码方式。
+4. getHeader(String name)：获取HTTP协议定义的文件头信息。
+5. getInputStream()：返回请求的输入流，用于获取请求中的数据。
+6. getParameter(String name)：获取客户端传送给服务器端的所有name指定的参数值。
+7. getProtocol()：获取客户端向服务器端传送数据所依据的协议名称。
+8. getQueryString()：获得查询字符串。
+9. getRequestURL()：获取发送请求字符串的客户端地址。
+10. getRemoteAddr()：获取客户端的IP地址。
+11. getRemoteHost()：获取客户端的名字。
+
+### 6. 过滤器和拦截器的区别？
+
+1. 作用范围：过滤器作用于Servlet容器和Web应用程序的整个请求和响应过程，而拦截器作用域Spring MVC框架中的控制器和处理器之间的请求和响应过程。
+2. 执行顺序：过滤器的执行顺序可以通过web.xml文件中的配置来控制，具有固定的执行顺序，拦截器的执行顺序可以通过配置文件或注解来控制，具有灵活的执行顺序。
+3. 使用方式：过滤器是基于Servlet规范实现的，可以使用Java Servlet API 来编写和配置。过滤器可以在web.xml文件中进行配置，也可以使用注解的方式进行配置；拦截器是基于SpringMVC框架实现的，需要使用SpringMVC框架提供的接口和注解来编写和配置，拦截器可以在配置文件中进行配置，也可以使用注解方式进行配置。
