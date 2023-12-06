@@ -461,7 +461,7 @@ Fanout,英文翻译是扇出，我觉得在MQ中叫广播更合适。
    ``` java
    @Test
    public void testSendDirectExchange(){
-       String exchangeName="itcast.direct";
+       String exchangeName="ccenote.direct";
        String message="hello";
        rabbitTemplate.convertAndSend(exchangeName,"red",message);
    }

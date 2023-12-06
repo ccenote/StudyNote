@@ -22,21 +22,16 @@ export default defineUserConfig({
         sidebar:{
             '/note/java/':[
                 {
-                    text:'Java',
+                    text:"SpringCloud",
                     children:[
-                        {
-                            text:"springcloud",
-                            children:[
-                                '/note/java/springcloud/',
-                                '/note/java/springcloud/Eureka.md',
-                                '/note/java/springcloud/Ribbon.md',
-                                '/note/java/springcloud/Nacos.md',
-                                '/note/java/springcloud/Feign.md',
-                                '/note/java/springcloud/GateWay.md',
-                                '/note/java/springcloud/RabbitMQ.md',
-                                '/note/java/springcloud/ElasticSearch.md'
-                            ]
-                        }
+                        '/note/java/springcloud/',
+                        '/note/java/springcloud/Eureka.md',
+                        '/note/java/springcloud/Ribbon.md',
+                        '/note/java/springcloud/Nacos.md',
+                        '/note/java/springcloud/Feign.md',
+                        '/note/java/springcloud/GateWay.md',
+                        '/note/java/springcloud/RabbitMQ.md',
+                        '/note/java/springcloud/ElasticSearch.md'
                     ]
                 }
             ],
@@ -48,7 +43,7 @@ export default defineUserConfig({
             ],
             '/note/iq/':[
                 {
-                    text:"面试题",
+                    text:"基础",
                     children:[
                         '/note/iq/base.md',
                         '/note/iq/collection.md',
@@ -57,6 +52,12 @@ export default defineUserConfig({
                         '/note/iq/web.md',
                         '/note/iq/mysql.md'
                     ]
+                }
+            ],
+            '/note/mysql/':[
+                {
+                    text:'mysql',
+                    link:'/note/mysql/'
                 }
             ],
             '/list/':[

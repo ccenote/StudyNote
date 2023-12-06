@@ -182,7 +182,7 @@
       1. 指定`FeignClient`所在包
 
          ``` java
-         @EnableFeignClients(basePackages="cn.itcast.feign.clients")
+         @EnableFeignClients(basePackages="cn.ccenote.feign.clients")
          ```
 
       2. 指定`FeignClient`字节码

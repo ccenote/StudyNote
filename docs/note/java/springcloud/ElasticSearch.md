@@ -533,7 +533,7 @@ ES官方提供了各种不同语言的客户端，用来操作ES。这些客户�
    创建一个类，定义`mapping`映射的`JSON`字符串常量：
 
    ``` java
-   package cn.itcast.hotel.constants;
+   package cn.ccenote.hotel.constants;
    
    public class HotelConstants {
        public static final String MAPPING_TEMPLATE = "{\n" +
@@ -721,7 +721,7 @@ ES官方提供了各种不同语言的客户端，用来操作ES。这些客户�
    因此，我们需要定义一个新的类型，与索引库结构吻合
 
    ``` java
-   package cn.itcast.hotel.pojo;
+   package cn.ccenote.hotel.pojo;
    
    import lombok.Data;
    import lombok.NoArgsConstructor;
